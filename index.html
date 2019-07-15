@@ -54,13 +54,7 @@
   // Use styleLayer to add a Mapbox style created in Mapbox Studio
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
   
-  // Now a function to populate our form with latitude and longitude values
-  function onMapMove(e) {
-      // txtLatitude.val(map.getCenter());
-      var locale = map.getCenter();
-      $('#txtLatitude').val(locale.lat);
-      $('#txtLongitude').val(locale.lng);
-  }
+
   // Boilerplate...
   function onLocationError(e) {
       alert(e.message);
