@@ -28,36 +28,15 @@
         }
         #metamap {
             width: 100%;
-            height: 300px;
+            height: 800px;
         }
-        #crosshair {
-            position: relative;
-            z-index: 10;
-            height: 200px;
-            vertical-align: middle;
-        }
-	#crosshair img {
-		position: absolute;
-		margin: 0;
-		top: 50%;
-		left: 50%;
-		margin-right: -50%;
-		transform: translate(-50%, -50%);
-	}
 	</style>
 </head>
 <body>
     <div id="metamap">
         <div id="map">
-            <div id="crosshair"><img class="crosshair" src=crosshair.png /></div>
         </div>
-    </div>
-    <br />
-    <hr />
-    Latitude: <input type="text" id="txtLatitude" />
-    <br /><br />
-    Longitude: <input type="text" id="txtLongitude" />
-
+    </div>   
 
 <script>
   L.mapbox.accessToken = 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A';
@@ -67,13 +46,7 @@
   // Use styleLayer to add a Mapbox style created in Mapbox Studio
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
   
-  // Now a function to populate our form with latitude and longitude values
-  function onMapMove(e) {
-      // txtLatitude.val(map.getCenter());
-      var locale = map.getCenter();
-      $('#txtLatitude').val(locale.lat);
-      $('#txtLongitude').val(locale.lng);
-  }
+
   // Boilerplate...
   function onLocationError(e) {
       alert(e.message);
