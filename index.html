@@ -55,15 +55,6 @@
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
   
 
-  // Boilerplate...
-  function onLocationError(e) {
-      alert(e.message);
-  }
-  // When the map moves we run our function up above
-  map.on('move', onMapMove);
-  // Boilerplate
-  map.on('locationerror', onLocationError);
-  
   // When we load the map, we should zoom to our current position using device geolocation
   map.locate({ setView: true, maxZoom: 20 });
 </script>
