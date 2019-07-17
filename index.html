@@ -43,7 +43,7 @@
   var map = L.mapbox.map('map')
       .setView([41.490717, -81.730077], 15);
 	
-   var 	file = ""
+   var 	data = "TIGER_GeoJSON_usethis.geojson"
 	
    var myStyle = {
 	"stroke": true,
@@ -56,7 +56,7 @@
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
 	
   // Add TIGER Trails
-   L.mapbox.geoJSON(TIGER_Trails).addTo(map);
+   L.mapbox.geoJSON(data).addTo(map);
 	
   // Boilerplate...
   function onLocationError(e) {
