@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8 />
-	<title>Leaflet Crosshairs</title>
+	<title>TIGER Trails</title>
 
 	<!-- Include meta tag to ensure proper rendering and touch zooming -->
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
@@ -42,16 +42,21 @@
   L.mapbox.accessToken = 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A';
   var map = L.mapbox.map('map')
       .setView([41.490717, -81.730077], 15);
+	
+   var 	file = ""
+	
+   var myStyle = {
+	"stroke": true,
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.50,
+};
   
   // Use styleLayer to add a Mapbox style created in Mapbox Studio
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
 	
   // Add TIGER Trails
-   // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
-  $.getJSON("TIGER_GeoJSON_usethis.geojson",function(TIGER_Trails){
-  // L.geoJson function is used to parse geojson file and load on to map
-  L.geoJson(TIGER_Trails).addTo(newMap);
-});
+   L.mapbox.geoJSON(TIGER_Trails).addTo(map);
 	
   // Boilerplate...
   function onLocationError(e) {
