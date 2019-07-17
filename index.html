@@ -45,8 +45,14 @@
   
   // Use styleLayer to add a Mapbox style created in Mapbox Studio
   L.mapbox.styleLayer('mapbox://styles/cleveland-metroparks/ciksmx4re004w9flx99488j4e').addTo(map);
-  
-
+	
+  // Add TIGER Trails
+   // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
+  $.getJSON("TIGER_GeoJSON_usethis.geojson",function(TIGER_Trails){
+  // L.geoJson function is used to parse geojson file and load on to map
+  L.geoJson(TIGER_Trails).addTo(newMap);
+});
+	
   // Boilerplate...
   function onLocationError(e) {
       alert(e.message);
