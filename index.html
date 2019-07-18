@@ -34,6 +34,13 @@
             center: [-81.714144, 41.498830],
             zoom: 15
         });
+        
+         map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
 
         map.on('load', function() {
 
