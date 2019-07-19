@@ -798,6 +798,14 @@
             center: [-81.714144, 41.498830],
             zoom: 11.15
         });
+        
+        map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
+        
 
         map.on('load', function() {
             // Add a GeoJSON source containing place coordinates and information.
