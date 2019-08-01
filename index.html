@@ -15,6 +15,28 @@
     <h2>RLG Map</h2>
     <div id="map" class="map"></div>
     <script type="text/javascript">
+        
+      import Map from 'ol/Map.js';
+      import View from 'ol/View.js';
+      import GeoJSON from 'ol/format/GeoJSON.js';
+      import VectorLayer from 'ol/layer/Vector.js';
+      import VectorSource from 'ol/source/Vector.js';
+      import {Fill, Stroke, Style, Text} from 'ol/style.js';
+        
+        
+        
+         var vectorLayer = new VectorLayer({
+        source: new VectorSource({
+          url: 'RLG Easements All.geojson',
+          format: new GeoJSON()
+        }),
+        style: function(feature) {
+          style.getText().setText(feature.get('name'));
+          return style;
+        }
+      });
+        
+
       var map = new ol.Map({
         target: 'map',
         layers: [
