@@ -1,30 +1,49 @@
-    <!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <title>Mapbox Vector Tiles</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v5.3.0/examples/resources/mapbox-streets-v6-style.js"></script>
     <style>
       .map {
-        height: 400px;
-        width: 100%;
+        background: #f8f4f0;
       }
     </style>
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <title>OpenLayers example</title>
   </head>
   <body>
-    <h2>RLG Map</h2>
     <div id="map" class="map"></div>
-    <script type="text/javascript">
-      var map = new ol.Map({
-        target: 'map',
+    <script>
+      import Map from 'ol/Map.js';
+      import View from 'ol/View.js';
+      import MVT from 'ol/format/MVT.js';
+      import VectorTileLayer from 'ol/layer/VectorTile.js';
+      import VectorTileSource from 'ol/source/VectorTile.js';
+      import {Fill, Icon, Stroke, Style, Text} from 'ol/style.js';
+
+
+      var key = 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A';
+
+      var map = new Map({
         layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
+          new VectorTileLayer({
+            declutter: true,
+            source: new VectorTileSource({
+              attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> ' +
+                '© <a href="https://www.openstreetmap.org/copyright">' +
+                'OpenStreetMap contributors</a>',
+              format: new MVT(),
+              url: 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/' +
+                  '{z}/{x}/{y}.vector.pbf?access_token=' + key
+            }),
+            style: createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text)
           })
         ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([-81.714144, 41.498830]),
-          zoom: 6
+        target: 'map',
+        view: new View({
+          center: [0, 0],
+          zoom: 2
         })
       });
     </script>
