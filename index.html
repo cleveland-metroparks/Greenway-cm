@@ -23,29 +23,22 @@
       import {Fill, Icon, Stroke, Style, Text} from 'ol/style.js';
 
 
-      var key = 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A';
+      var key = 'Your Mapbox access token from http://mapbox.com/ here';
 
-      var map = new Map({
-        layers: [
-          new VectorTileLayer({
-            declutter: true,
-            source: new VectorTileSource({
-              attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> ' +
-                '© <a href="https://www.openstreetmap.org/copyright">' +
-                'OpenStreetMap contributors</a>',
-              format: new MVT(),
-              url: 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/' +
-                  '{z}/{x}/{y}.vector.pbf?access_token=' + key
-            }),
-            style: createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text)
-          })
-        ],
-        target: 'map',
-        view: new View({
-          center: [0, 0],
-          zoom: 2
-        })
-      });
+      var map = new ol.Map({
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'https://api.mapbox.com/styles/v1/mapbox://styles/cleveland-metroparks/cjcutetjg07892ro6wunp2da9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A'
+      })
+    })
+  ],
+  target: 'map',
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 2
+  })
+});
     </script>
   </body>
 </html>
