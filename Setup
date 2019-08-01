@@ -1,0 +1,8 @@
+git clone git@github.com:openlayers/ol-parcel.git
+
+cd ol-parcel
+npm install
+
+npm run build
+
+open dist/index.html
