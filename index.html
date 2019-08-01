@@ -1,44 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mapbox Vector Tiles</title>
-    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script src="https://openlayers.org/en/v5.3.0/examples/resources/mapbox-streets-v6-style.js"></script>
+    <meta charset="utf-8">
+    <title>Using Parcel with OpenLayers</title>
     <style>
-      .map {
-        background: #f8f4f0;
+      #map {
+        width: 400px;
+        height: 250px;
       }
     </style>
   </head>
   <body>
-    <div id="map" class="map"></div>
-    <script>
-      import Map from 'ol/Map.js';
-      import View from 'ol/View.js';
-      import MVT from 'ol/format/MVT.js';
-      import VectorTileLayer from 'ol/layer/VectorTile.js';
-      import VectorTileSource from 'ol/source/VectorTile.js';
-      import {Fill, Icon, Stroke, Style, Text} from 'ol/style.js';
-
-
-      var key = 'pk.eyJ1IjoiY2xldmVsYW5kLW1ldHJvcGFya3MiLCJhIjoiY2lsdWI2NndjMDE4cnZka3NpNXZwZnNiaSJ9.Pv2uRstAQcCq5EGTqK4o6A';
-
-      var map = new ol.Map({
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.XYZ({
-        url: 'https://api.mapbox.com/styles/v1/mapbox://styles/cleveland-metroparks/cjcutetjg07892ro6wunp2da9/tiles/256/{z}/{x}/{y}
-      })
-    })
-  ],
-  target: 'map',
-  view: new ol.View({
-    center: [0, 0],
-    zoom: 2
-  })
-});
-    </script>
+    <div id="map"></div>
+    <script src="./index.js"></script>
   </body>
 </html>
