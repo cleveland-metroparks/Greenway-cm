@@ -1,132 +1,18 @@
-
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vector Layer</title>
-    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-
+    <meta charset="utf-8">
+    <title>OpenLayers</title>
+    <style>
+      html, body, #map-container {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <div id="map" class="map"></div>
-    <div id="info">&nbsp;</div>
-    <script>
-      import Map from 'ol/Map.js';
-      import View from 'ol/View.js';
-      import GeoJSON from 'ol/format/GeoJSON.js';
-      import VectorLayer from 'ol/layer/Vector.js';
-      import VectorSource from 'ol/source/Vector.js';
-      import {Fill, Stroke, Style, Text} from 'ol/style.js';
-
-
-      var style = new Style({
-        fill: new Fill({
-          color: 'rgba(255, 255, 255, 0.6)'
-        }),
-        stroke: new Stroke({
-          color: '#319FD3',
-          width: 1
-        }),
-        text: new Text({
-          font: '12px Calibri,sans-serif',
-          fill: new Fill({
-            color: '#000'
-          }),
-          stroke: new Stroke({
-            color: '#fff',
-            width: 3
-          })
-        })
-      });
-
-      var vectorLayer = new VectorLayer({
-        source: new VectorSource({
-          url: 'data/geojson/countries.geojson',
-          format: new GeoJSON()
-        }),
-        style: function(feature) {
-          style.getText().setText(feature.get('name'));
-          return style;
-        }
-      });
-
-      var map = new Map({
-        layers: [vectorLayer],
-        target: 'map',
-        view: new View({
-          center: [0, 0],
-          zoom: 1
-        })
-      });
-
-      var highlightStyle = new Style({
-        stroke: new Stroke({
-          color: '#f00',
-          width: 1
-        }),
-        fill: new Fill({
-          color: 'rgba(255,0,0,0.1)'
-        }),
-        text: new Text({
-          font: '12px Calibri,sans-serif',
-          fill: new Fill({
-            color: '#000'
-          }),
-          stroke: new Stroke({
-            color: '#f00',
-            width: 3
-          })
-        })
-      });
-
-      var featureOverlay = new VectorLayer({
-        source: new VectorSource(),
-        map: map,
-        style: function(feature) {
-          highlightStyle.getText().setText(feature.get('name'));
-          return highlightStyle;
-        }
-      });
-
-      var highlight;
-      var displayFeatureInfo = function(pixel) {
-
-        var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
-          return feature;
-        });
-
-        var info = document.getElementById('info');
-        if (feature) {
-          info.innerHTML = feature.getId() + ': ' + feature.get('name');
-        } else {
-          info.innerHTML = '&nbsp;';
-        }
-
-        if (feature !== highlight) {
-          if (highlight) {
-            featureOverlay.getSource().removeFeature(highlight);
-          }
-          if (feature) {
-            featureOverlay.getSource().addFeature(feature);
-          }
-          highlight = feature;
-        }
-
-      };
-
-      map.on('pointermove', function(evt) {
-        if (evt.dragging) {
-          return;
-        }
-        var pixel = map.getEventPixel(evt.originalEvent);
-        displayFeatureInfo(pixel);
-      });
-
-      map.on('click', function(evt) {
-        displayFeatureInfo(evt.pixel);
-      });
-    </script>
+    <div id="map-container"></div>
   </body>
 </html>
